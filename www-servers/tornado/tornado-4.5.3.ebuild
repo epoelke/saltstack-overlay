@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{7..9} )
 PYTHON_REQ_USE="threads(+)"
 
 inherit distutils-r1
@@ -21,25 +21,10 @@ RESTRICT="!test? ( test )"
 CDEPEND="
 	dev-python/certifi[${PYTHON_USEDEP}]
 	>=dev-python/pycurl-7.19.3.1[${PYTHON_USEDEP}]
-	$(python_gen_cond_dep '>=dev-python/backports-ssl-match-hostname-3.5[${PYTHON_USEDEP}]' 'python2_7')
-	|| (
-		>=dev-python/twisted-16.0.0[${PYTHON_USEDEP}]
-		(	$(python_gen_cond_dep 'dev-python/twisted-names[${PYTHON_USEDEP}]' 'python2_7')
-			$(python_gen_cond_dep 'dev-python/twisted-web[${PYTHON_USEDEP}]' 'python2_7')
-		)
-	)
-	$(python_gen_cond_dep '
-		dev-python/backports-abc[${PYTHON_USEDEP}]
-		dev-python/futures[${PYTHON_USEDEP}]
-		dev-python/singledispatch[${PYTHON_USEDEP}]
-	' -2)
+	>=dev-python/twisted-16.0.0[${PYTHON_USEDEP}]
 "
 DEPEND="
 	dev-python/setuptools[${PYTHON_USEDEP}]
-	doc? (
-		dev-python/sphinx[${PYTHON_USEDEP}]
-		dev-python/sphinx_rtd_theme[${PYTHON_USEDEP}]
-	)
 	test? (
 		${CDEPEND}
 		dev-python/mock[${PYTHON_USEDEP}]
