@@ -4,7 +4,7 @@
 EAPI=7
 PYTHON_COMPAT=( python3_7 )
 DISTUTILS_USE_SETUPTOOLS=bdepend
-inherit systemd distutils-r1
+inherit python-single-r1
 
 DESCRIPTION="Salt is a remote execution and configuration manager"
 HOMEPAGE="https://www.saltstack.com/resources/community/
